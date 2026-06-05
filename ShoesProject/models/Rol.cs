@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ShoesProject.models;
+﻿using ShoesProject.models;
 
 namespace ShoesProject;
 
