@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using ShoesProject.models;
 
-namespace ShoesProject.models;
+namespace ShoesProject;
 
 public partial class ShopDbContext : DbContext
 {
