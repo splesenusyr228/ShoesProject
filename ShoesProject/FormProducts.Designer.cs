@@ -30,9 +30,9 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panelTop = new Panel();
-            dgvProducts = new DataGridView();
-            btnLogin = new Button();
             lblUserName = new Label();
+            btnLogut = new Button();
+            dgvProducts = new DataGridView();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
@@ -41,13 +41,37 @@
             // 
             panelTop.CausesValidation = false;
             panelTop.Controls.Add(lblUserName);
-            panelTop.Controls.Add(btnLogin);
+            panelTop.Controls.Add(btnLogut);
             panelTop.Location = new Point(12, 12);
             panelTop.Name = "panelTop";
             panelTop.Padding = new Padding(0, 0, 0, 10);
             panelTop.Size = new Size(960, 40);
             panelTop.TabIndex = 0;
             panelTop.Paint += panel1_Paint;
+            // 
+            // lblUserName
+            // 
+            lblUserName.AutoSize = true;
+            lblUserName.Location = new Point(768, 0);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(45, 19);
+            lblUserName.TabIndex = 6;
+            lblUserName.Text = "label1";
+            lblUserName.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnLogut
+            // 
+            btnLogut.BackColor = Color.MediumSpringGreen;
+            btnLogut.Dock = DockStyle.Right;
+            btnLogut.FlatAppearance.BorderSize = 0;
+            btnLogut.FlatStyle = FlatStyle.Flat;
+            btnLogut.Location = new Point(810, 0);
+            btnLogut.Name = "btnLogut";
+            btnLogut.Size = new Size(150, 30);
+            btnLogut.TabIndex = 5;
+            btnLogut.Text = "Выход";
+            btnLogut.UseVisualStyleBackColor = false;
+            btnLogut.Click += BtnLogге_Click;
             // 
             // dgvProducts
             // 
@@ -73,29 +97,6 @@
             dgvProducts.TabIndex = 1;
             dgvProducts.CellContentClick += dgvProducts_CellContentClick;
             // 
-            // btnLogin
-            // 
-            btnLogin.BackColor = Color.MediumSpringGreen;
-            btnLogin.Dock = DockStyle.Right;
-            btnLogin.FlatAppearance.BorderSize = 0;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Location = new Point(810, 0);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(150, 30);
-            btnLogin.TabIndex = 5;
-            btnLogin.Text = "Войти";
-            btnLogin.UseVisualStyleBackColor = false;
-            // 
-            // lblUserName
-            // 
-            lblUserName.AutoSize = true;
-            lblUserName.Location = new Point(768, 0);
-            lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(45, 19);
-            lblUserName.TabIndex = 6;
-            lblUserName.Text = "label1";
-            lblUserName.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // FormProducts
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -105,7 +106,7 @@
             Controls.Add(dgvProducts);
             Controls.Add(panelTop);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "FormProducts";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Список товаров";
@@ -119,7 +120,7 @@
 
         private Panel panelTop;
         private DataGridView dgvProducts;
-        private Button btnLogin;
+        private Button btnLogut;
         private Label lblUserName;
     }
 }
