@@ -42,17 +42,19 @@
             panelTop.CausesValidation = false;
             panelTop.Controls.Add(lblUserName);
             panelTop.Controls.Add(btnLogut);
-            panelTop.Location = new Point(12, 12);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
             panelTop.Padding = new Padding(0, 0, 0, 10);
-            panelTop.Size = new Size(960, 40);
+            panelTop.Size = new Size(984, 40);
             panelTop.TabIndex = 0;
             panelTop.Paint += panel1_Paint;
             // 
             // lblUserName
             // 
             lblUserName.AutoSize = true;
-            lblUserName.Location = new Point(768, 0);
+            lblUserName.ImageAlign = ContentAlignment.MiddleRight;
+            lblUserName.Location = new Point(759, 6);
             lblUserName.Name = "lblUserName";
             lblUserName.Size = new Size(45, 19);
             lblUserName.TabIndex = 6;
@@ -65,7 +67,7 @@
             btnLogut.Dock = DockStyle.Right;
             btnLogut.FlatAppearance.BorderSize = 0;
             btnLogut.FlatStyle = FlatStyle.Flat;
-            btnLogut.Location = new Point(810, 0);
+            btnLogut.Location = new Point(834, 0);
             btnLogut.Name = "btnLogut";
             btnLogut.Size = new Size(150, 30);
             btnLogut.TabIndex = 5;
@@ -76,6 +78,7 @@
             // dgvProducts
             // 
             dgvProducts.AllowUserToDeleteRows = false;
+            dgvProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProducts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvProducts.BackgroundColor = Color.White;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -87,13 +90,14 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvProducts.DefaultCellStyle = dataGridViewCellStyle1;
-            dgvProducts.Location = new Point(12, 48);
+            dgvProducts.Dock = DockStyle.Fill;
+            dgvProducts.Location = new Point(0, 40);
             dgvProducts.MultiSelect = false;
             dgvProducts.Name = "dgvProducts";
             dgvProducts.ReadOnly = true;
             dgvProducts.RowHeadersVisible = false;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProducts.Size = new Size(960, 601);
+            dgvProducts.Size = new Size(984, 621);
             dgvProducts.TabIndex = 1;
             dgvProducts.CellContentClick += dgvProducts_CellContentClick;
             // 

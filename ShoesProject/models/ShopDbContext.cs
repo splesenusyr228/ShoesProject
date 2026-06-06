@@ -87,7 +87,6 @@ public partial class ShopDbContext : DbContext
         modelBuilder.Entity<Order>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("orders_pkey");
-
             entity.ToTable("orders");
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -98,23 +97,24 @@ public partial class ShopDbContext : DbContext
             entity.Property(e => e.IdUser).HasColumnName("id_user");
             entity.Property(e => e.OrderDate).HasColumnName("order_date");
 
-            entity.HasOne(d => d.IdDeliveryPointNavigation).WithMany(p => p.Orders)
+            entity.HasOne(d => d.DeliveryPoint).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.IdDeliveryPoint)
                 .HasConstraintName("orders_id_delivery_point_fkey");
 
-            entity.HasOne(d => d.IdStatusesNavigation).WithMany(p => p.Orders)
+            // ИСПРАВЛЕНО: Заменено d.IdStatuses на d.IdStatusesNavigation (или d.Status в зависимости от вашей модели Order.cs)
+            entity.HasOne(d => d.Status).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.IdStatuses)
                 .HasConstraintName("orders_id_statuses_fkey");
 
-            entity.HasOne(d => d.IdUserNavigation).WithMany(p => p.Orders)
+            entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.IdUser)
                 .HasConstraintName("orders_id_user_fkey");
         });
 
+
         modelBuilder.Entity<Product>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("products_pkey");
-
             entity.ToTable("products");
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -132,27 +132,29 @@ public partial class ShopDbContext : DbContext
                 .HasColumnType("money")
                 .HasColumnName("price");
 
-            entity.HasOne(d => d.IdCategoryNavigation).WithMany(p => p.Products)
+            entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.IdCategory)
                 .HasConstraintName("products_id_category_fkey");
 
-            entity.HasOne(d => d.IdManufacturerNavigation).WithMany(p => p.Products)
+            entity.HasOne(d => d.Manufacturer).WithMany(p => p.Products)
                 .HasForeignKey(d => d.IdManufacturer)
                 .HasConstraintName("products_id_manufacturer_fkey");
 
-            entity.HasOne(d => d.IdMeasureNavigation).WithMany(p => p.Products)
+            entity.HasOne(d => d.Measure).WithMany(p => p.Products)
                 .HasForeignKey(d => d.IdMeasure)
                 .HasConstraintName("products_id_measure_fkey");
 
-            entity.HasOne(d => d.IdSupplierNavigation).WithMany(p => p.Products)
+            entity.HasOne(d => d.Supplier).WithMany(p => p.Products)
                 .HasForeignKey(d => d.IdSupplier)
                 .HasConstraintName("products_id_supplier_fkey");
 
-            entity.HasOne(d => d.IdTypeNavigation).WithMany(p => p.Products)
+            // ИСПРАВЛЕНО: Заменено d.IdType на d.IdTypeNavigation
+            entity.HasOne(d => d.ProductType).WithMany(p => p.Products)
                 .HasForeignKey(d => d.IdType)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("products_id_type_fkey");
         });
+
 
         modelBuilder.Entity<ProductType>(entity =>
         {
@@ -177,11 +179,11 @@ public partial class ShopDbContext : DbContext
             entity.Property(e => e.IdProduct).HasColumnName("id_product");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
 
-            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.ProductsOrders)
+            entity.HasOne(d => d.Order).WithMany(p => p.ProductsOrders)
                 .HasForeignKey(d => d.IdOrder)
                 .HasConstraintName("products_orders_id_order_fkey");
 
-            entity.HasOne(d => d.IdProductNavigation).WithMany(p => p.ProductsOrders)
+            entity.HasOne(d => d.Product).WithMany(p => p.ProductsOrders)
                 .HasForeignKey(d => d.IdProduct)
                 .HasConstraintName("products_orders_id_product_fkey");
         });
@@ -219,7 +221,6 @@ public partial class ShopDbContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("users_pkey");
-
             entity.ToTable("users");
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -230,10 +231,12 @@ public partial class ShopDbContext : DbContext
             entity.Property(e => e.MiddleName).HasColumnName("middle_name");
             entity.Property(e => e.Pass).HasColumnName("pass");
 
-            entity.HasOne(d => d.IdRolsNavigation).WithMany(p => p.Users)
+            // ИСПРАВЛЕНО (согласно скриншоту): Убедитесь, что здесь Navigation, а не просто IdRols
+            entity.HasOne(d => d.Rol).WithMany(p => p.Users)
                 .HasForeignKey(d => d.IdRols)
                 .HasConstraintName("users_id_rols_fkey");
         });
+
 
         OnModelCreatingPartial(modelBuilder);
     }

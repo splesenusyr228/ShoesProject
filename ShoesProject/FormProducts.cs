@@ -54,6 +54,7 @@ namespace ShoesProject
                         .Include(i => i.Manufacturer)
                         .Include(i => i.Supplier)
                         .Include(i => i.Measure)
+                        .Include(i => i.ProductType)
                         .ToList();
 
                     dgvProducts.SuspendLayout();
@@ -73,6 +74,9 @@ namespace ShoesProject
 
                         ApplyRowStyles(row, product);
                     }
+
+                    dgvProducts.ResumeLayout();
+                    dgvProducts.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
 
                 }
 
@@ -117,11 +121,11 @@ namespace ShoesProject
             if (product.Discount > 0)
             {
                 decimal finalPrice = product.Price * (100 - product.Discount) / 100;
-                priceText = $"Цена: {product.Price:С} -> {finalPrice:С}";
+                priceText = $"Цена: {product.Price:C} -> {finalPrice:C}";
             }
             else
             {
-                priceText = $"Цена: {product.Price:С}";
+                priceText = $"Цена: {product.Price:C}";
             }
 
             return $"{product.Category.CategoryName} | {product.ProductType.ProdType}" + Environment.NewLine +
